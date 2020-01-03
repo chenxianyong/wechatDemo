@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.IngredientsInventoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.IngredientsInventory">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="menu_id" jdbcType="BIGINT" property="menuId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.model.IngredientsInventory">
+    insert into ingredients_inventory (id, del, create_time, 
+      menu_id, title, weight
+      )
+    values (#{id,jdbcType=BIGINT}, #{del,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{menuId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.IngredientsInventory">
+    insert into ingredients_inventory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="menuId != null">
+        menu_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="del != null">
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

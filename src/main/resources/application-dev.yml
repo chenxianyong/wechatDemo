@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+
+#编码转换
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+#配置数据库连接信息
+  datasource:
+    name: root
+    password: 5zqvur6k
+    url: jdbc:mysql://47.94.251.74:3805/oke?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+#    name: root
+#    password: WH132qew////
+#    url: jdbc:mysql://localhost:3306/chendongdong?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+#    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:com/example/demo/mapper/*.xml

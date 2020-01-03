@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.Menu">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="del" jdbcType="INTEGER" property="del"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="chef" jdbcType="VARCHAR" property="chef"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="laud" jdbcType="BIGINT" property="laud"/>
+        <result column="favorite" jdbcType="BIGINT" property="favorite"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="spend_time" jdbcType="INTEGER" property="spendTime"/>
+        <result column="degree" jdbcType="INTEGER" property="degree"/>
+        <result column="step" jdbcType="VARCHAR" property="step"/>
+        <result column="knack" jdbcType="VARCHAR" property="knack"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+    </resultMap>
+
+    <sql id="base_column_list">
+    id, del, create_time, chef, title, laud, favorite, description, spend_time, degree, step, knack, sort
+  </sql>
+
+    <insert id="insert" parameterType="com.example.demo.model.Menu">
+    insert into menu (id, del, create_time, 
+      chef, title, laud, favorite, 
+      description, spend_time, degree, 
+      step, knack, sort)
+    values (#{id,jdbcType=BIGINT}, #{del,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{chef,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{laud,jdbcType=BIGINT}, #{favorite,jdbcType=BIGINT}, 
+      #{description,jdbcType=VARCHAR}, #{spendTime,jdbcType=INTEGER}, #{degree,jdbcType=INTEGER}, 
+      #{step,jdbcType=VARCHAR}, #{knack,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.model.Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="del != null">
+                del,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="chef != null">
+                chef,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="laud != null">
+                laud,
+            </if>
+            <if test="favorite != null">
+                favorite,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="spendTime != null">
+                spend_time,
+            </if>
+            <if test="degree != null">
+                degree,
+            </if>
+            <if test="step != null">
+                step,
+            </if>
+            <if test="knack != null">
+                knack,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="del != null">
+                #{del,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chef != null">
+                #{chef,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="laud != null">
+                #{laud,jdbcType=BIGINT},
+            </if>
+            <if test="favorite != null">
+                #{favorite,jdbcType=BIGINT},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="spendTime != null">
+                #{spendTime,jdbcType=INTEGER},
+            </if>
+            <if test="degree != null">
+                #{degree,jdbcType=INTEGER},
+            </if>
+            <if test="step != null">
+                #{step,jdbcType=VARCHAR},
+            </if>
+            <if test="knack != null">
+                #{knack,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="selectRecommendMenu" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="base_column_list" />
+        from menu
+        order by laud desc , favorite desc , sort desc , id desc
+    </select>
+</mapper>
